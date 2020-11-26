@@ -1,6 +1,9 @@
 import argparse
 import socket
-import threading
+# import threading
+
+ports = ("20,21,22,23,25,53,67,68,80,110,123,137,138,139,156,161,179," +
+         "443,444,1433,1434,1453,1583,1723,1863,3050,3128,3306,3351,3389,3366,5432,8080,8332,15432,18332,18443")
 
 
 def connection_scan(target_ip, target_port):
@@ -32,9 +35,7 @@ def argument_parser():
         description="TCP scanner. Accepts a hostname/IP - identify services running")
     parser.add_argument("-o", "--host", nargs="?", help="Host IP address")
     parser.add_argument("-p", "--port", nargs="?",
-                        default=(
-                            ("20,21,22,23,25,53,67,68,80,110,123,137,138,139,156,161,179," +
-                             "443,444,1433,1434,1453,1583,1723,1863,3050,3128,3306,3351,3389,3366,5432,8080,8332,15432,18332,18443")),
+                        default=ports,
                         help="Port number or list, separeted, such as '25,80,8080'")
     var_args = vars(parser.parse_args())
     return var_args
